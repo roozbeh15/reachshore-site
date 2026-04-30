@@ -22,6 +22,7 @@
   <meta name="twitter:title" content="ReachShore — App installs from creators">
   <meta name="twitter:description" content="Creator marketing for indie iOS apps. $1–2 CPI vs $5+ on Meta.">
   <meta name="twitter:image" content="https://reachshore.com/og-image.png">
+  <meta name="twitter:image:alt" content="ReachShore — App installs from creators. $1–2 CPI. Zero work for you.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -645,6 +646,17 @@
       display: flex;
       gap: 24px;
     }
+    .footer-brand {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+    .footer-logo {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
 
     /* Utilities */
     .visually-hidden {
@@ -888,7 +900,7 @@
             <div class="build-stat"><span>Niche</span><strong>Couples / relationships</strong></div>
             <div class="build-stat"><span>Channel</span><strong>TikTok micro-influencers</strong></div>
             <div class="build-stat"><span>Status</span><strong>Live, week 1</strong></div>
-            <div class="build-stat"><span>Updates</span><strong><a href="https://x.com/" target="_blank" rel="noopener">@reachshore on X</a></strong></div>
+            <div class="build-stat"><span>Updates</span><strong><a href="https://x.com/reachshore" target="_blank" rel="noopener">@reachshore on X</a></strong></div>
           </div>
         </div>
       </div>
@@ -956,8 +968,9 @@
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div>
-          © 2026 ReachShore · A product of Nias LLC
+        <div class="footer-brand">
+          <img class="footer-logo" src="/logo.svg" alt="ReachShore" width="160" height="37">
+          <span>© 2026 · A product of Nias LLC</span>
         </div>
         <div class="footer-links">
           <a href="https://x.com/reachshore" target="_blank" rel="noopener">X</a>
@@ -980,22 +993,14 @@
         button.textContent = 'Adding…';
 
         try {
-          // TODO: replace with your real waitlist endpoint
-          // Example with Formspree: action="https://formspree.io/f/YOUR_ID"
           const endpoint = form.dataset.endpoint || 'https://us-central1-tend-a9ac4.cloudfunctions.net/reachshoreWaitlist';
-          if (endpoint.startsWith('REPLACE_')) {
-            // Local fallback: log + thank
-            console.log('Waitlist signup:', email);
-            msg.textContent = "You're on the list. I'll email you when v1 ships.";
-          } else {
-            const res = await fetch(endpoint, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-              body: JSON.stringify({ email })
-            });
-            if (!res.ok) throw new Error('signup failed');
-            msg.textContent = "You're on the list. I'll email you when v1 ships.";
-          }
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify({ email })
+          });
+          if (!res.ok) throw new Error('signup failed');
+          msg.textContent = "You're on the list. I'll email you when v1 ships.";
           form.reset();
         } catch (err) {
           msg.textContent = "Something went wrong. Email hello@reachshore.com instead.";
@@ -1016,9 +1021,10 @@
       } catch (e) { /* swallow */ }
     }
 
-    // Deposit CTAs: any link to a Stripe payment link
+    // Deposit CTAs: any link to a Stripe payment link.
+    // Use pointerdown so the count() request fires before same-tab navigation aborts it.
     document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(function (el) {
-      el.addEventListener('click', function () { rsTrack('cta-deposit', 'Click: deposit'); });
+      el.addEventListener('pointerdown', function () { rsTrack('cta-deposit', 'Click: deposit'); });
     });
     // Calendly CTA
     document.querySelectorAll('a[href^="https://calendly.com/"]').forEach(function (el) {
@@ -1040,9 +1046,7 @@
     }
   </script>
 
-  <!-- GoatCounter analytics (privacy-friendly, no cookies, free for personal sites).
-       To activate: sign up at https://www.goatcounter.com, create a site (e.g. `reachshore`),
-       then replace MYCODE below with the subdomain GoatCounter assigns. -->
+  <!-- GoatCounter analytics (privacy-friendly, no cookies). -->
   <script data-goatcounter="https://reachshore.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </body>
