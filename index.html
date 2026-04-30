@@ -983,7 +983,7 @@
         try {
           // TODO: replace with your real waitlist endpoint
           // Example with Formspree: action="https://formspree.io/f/YOUR_ID"
-          const endpoint = form.dataset.endpoint || 'REPLACE_WITH_WAITLIST_ENDPOINT';
+          const endpoint = form.dataset.endpoint || 'https://us-central1-tend-a9ac4.cloudfunctions.net/reachshoreWaitlist';
           if (endpoint.startsWith('REPLACE_')) {
             // Local fallback: log + thank
             console.log('Waitlist signup:', email);
