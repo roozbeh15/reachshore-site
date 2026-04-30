@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 56" width="240" height="56" role="img" aria-label="ReachShore">
+  <!-- Mark -->
+  <g>
+    <rect x="0" y="0" width="56" height="56" rx="12" fill="#0d4f5c"/>
+    <circle cx="42" cy="17" r="4" fill="#f97316"/>
+    <path d="M7 33 Q14 28 21 33 T35 33 T49 33" stroke="white" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+    <path d="M7 41 Q14 36 21 41 T35 41 T49 41" stroke="white" stroke-width="2.6" fill="none" stroke-linecap="round" opacity="0.55"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="72" y="37"
+        font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif"
+        font-size="26"
+        font-weight="700"
+        letter-spacing="-0.5"
+        fill="#0d4f5c">ReachShore</text>
+</svg>
